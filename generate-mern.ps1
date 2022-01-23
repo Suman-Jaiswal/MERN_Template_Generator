@@ -4,10 +4,36 @@ echo ""
 mkdir client
 mkdir server
 cd client
+
 echo ""
 Write-Host "Installing latest version of React..." -ForegroundColor blue
 echo ""
+
 npx create-react-app .
+
+echo ""
+Write-Host "Making API..." -ForegroundColor blue
+echo ""
+yarn add axios
+cd src 
+mkdir api
+
+
+
+# ------------------------------------------------------------------------------------------------->
+New-Item api/index.js
+Set-Content api/index.js "import axios from 'axios'
+
+const usersURL = 'http://localhost:5000/users'
+
+export const fetchUsers = () => axios.get(usersURL)
+export const fetchUser = (userName) => axios.get(usersURL + '/' + userName)
+"
+# ----------------------------------------------------------------------------------------------------->
+
+
+
+cd ..
 cd ..
 cd server
 echo ""
@@ -44,7 +70,7 @@ dotenv.config()
 const app = express()
 
 //Creating API for user
-app.use('/api/users', userRoutes)
+app.use('/users', userRoutes)
 
 const PORT = process.env.PORT || 5000
 
