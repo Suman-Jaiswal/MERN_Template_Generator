@@ -61,11 +61,11 @@ import userRoutes from './routes/userRoute.js'
 import express from 'express'
 import dotenv  from 'dotenv'
 
-//connect database
-connectDB()
-
 //dotenv config
 dotenv.config()
+
+//connect database
+connectDB()
 
 const app = express()
 
