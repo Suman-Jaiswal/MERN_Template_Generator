@@ -65,7 +65,8 @@ import dotenv  from 'dotenv'
 dotenv.config()
 
 //connect database
-connectDB()
+const DB_URI = process.env.MONGO_URI
+connectDB(DB_URI)
 
 const app = express()
 
@@ -93,9 +94,7 @@ mkdir controllers, models, routes, config
 New-Item config/db.js
 Set-Content config/db.js "const mongoose = require('mongoose')
 
-const DB_URI = process.env.MONGO_URI
-
-const connectDB = async () => {
+const connectDB = async (DB_URI) => {
    mongoose.connect(DB_URI, {
   useNewUrlParser: true,
   // useCreateIndex: true,
